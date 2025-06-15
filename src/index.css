@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+
+
+/* home page */
+
+.button-home{
+    transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+}
+
+.button-home:hover{
+color: white;
+border: 1px solid white;
+background-color: transparent;
+}
+
+.button-home-2{
+    transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+}
+
+.button-home-2:hover{
+color: black;
+border: 1px solid black;
+background-color: white;
+}
