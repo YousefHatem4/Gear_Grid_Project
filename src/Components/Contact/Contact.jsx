@@ -28,7 +28,7 @@ export default function Contact() {
               <FontAwesomeIcon icon={faEnvelope} className="w-5 h-5 mt-1 mr-4 flex-shrink-0" />
               <div>
                 <h3 className="font-semibold text-lg">Email Us</h3>
-                <p className="text-gray-300">yousef.hatem.developer@gmail</p>
+                <p className="text-gray-300 text-sm">yousef.hatem.developer@gmail.com</p>
               </div>
             </div>
 
