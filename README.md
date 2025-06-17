@@ -1,12 +1,45 @@
-# React + Vite
+# GearGrid 🚗
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**GearGrid** is a responsive web app built with React.js and Tailwind CSS that delivers a sleek and interactive platform to explore cars, brands, and detailed information—optimized for all devices.
 
-Currently, two official plugins are available:
+## 🌟 Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔗 [Live Website](https://gear-grid-project.vercel.app/login)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📌 Features
+
+- 🔐 **User Authentication** – Login and register securely with validation.
+- 🚘 **Dynamic Car & Brand Grid** – Browse brands and their respective car models.
+- 📄 **Detailed Car Pages** – View detailed specs and information for each car.
+- 🔎 **Search & Filter** – Filter by brand or category to find cars quickly.
+- 📱 **Fully Responsive** – Works on all screen sizes (mobile, tablet, desktop).
+- ✨ **Modern UI/UX** – Interactive design with smooth transitions and hover effects.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React.js  
+- **Styling**: Tailwind CSS  
+- **Routing**: React Router DOM  
+- **State Management**: React Context API (or Redux if used)  
+- **Form Handling**: react-hook-form / Formik  
+- **API Calls**: Axios / Fetch  
+- **Deployment**: Vercel
+
+---
+
+## 🚀 Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/yourusername/geargrid.git
+cd geargrid
+
+# 2. Install dependencies
+npm install
+
+# 3. Start development server
+npm start
