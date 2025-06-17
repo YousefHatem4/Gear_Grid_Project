@@ -16,6 +16,7 @@ import NotFound from './Components/NotFound/NotFound'
 import UserContextProvider from './Components/Context/UserContext'
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
 import CarDetails from './Components/CarDetails/CarDetails'
+import CarsContextProvider from './Components/Context/CarsContext'
 
 
 
@@ -42,9 +43,11 @@ const routers = createBrowserRouter([
 function App() {
   return (
     <>
-      <UserContextProvider>
-        <RouterProvider router={routers}></RouterProvider>
-      </UserContextProvider>
+      <CarsContextProvider>
+        <UserContextProvider>
+          <RouterProvider router={routers}></RouterProvider>
+        </UserContextProvider>
+      </CarsContextProvider>
     </>
   )
 }
