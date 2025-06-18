@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -27,7 +27,6 @@ export default function Listing() {
 
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
-  const carSectionRef = useRef(null); // ref to scroll into view
   let { getCarToSave, savedCarIds } = useContext(carsContext);
 
   async function getAllCars() {
@@ -40,15 +39,12 @@ export default function Listing() {
     let { data } = await axios.get(`https://azmycarsapi.runasp.net/api/Car/category/${category}`);
     setCars(data);
     setLoading(false);
-  }
 
-  const handleCategoryClick = async (category) => {
-    setLoading(true);
-    await getAllCarsCategories(category);
-    if (carSectionRef.current) {
-      carSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const scrollTarget = document.getElementById('availableCarsSection');
+    if (scrollTarget) {
+      scrollTarget.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }
 
   useEffect(() => {
     getAllCars();
@@ -79,7 +75,7 @@ export default function Listing() {
               <div
                 key={index}
                 className="group cursor-pointer relative bg-white p-3 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center"
-                onClick={() => handleCategoryClick(category.name)}
+                onClick={() => getAllCarsCategories(category.name)}
               >
                 <div className="flex-shrink-0 h-20 w-20 rounded-full bg-gray-50 p-4 flex items-center justify-center group-hover:bg-gray-100 transition-colors duration-300">
                   <FontAwesomeIcon icon={category.icon} className="h-16 w-16 text-black text-2xl" />
@@ -93,7 +89,7 @@ export default function Listing() {
         </div>
       </div>
 
-      <div ref={carSectionRef} className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <div id="availableCarsSection" className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900">Available Cars</h2>
@@ -129,11 +125,18 @@ export default function Listing() {
                           e.target.src = 'https://via.placeholder.com/300x200?text=No+Image';
                         }}
                       />
-
                       <button
-                        onClick={!isSaved ? () => getCarToSave(car.id) : null}
+                        onClick={() => {
+                          if (!isSaved) {
+                            getCarToSave(car.id);
+                          }
+                        }}
                         title={isSaved ? "Saved" : "Save to favorites"}
-                        className={`absolute top-2 left-2 ${isSaved ? 'text-white bg-yellow-500' : 'text-yellow-500 bg-white hover:bg-yellow-500 hover:text-white'} flex justify-center items-center p-2 rounded-full shadow transition-colors ${isSaved ? 'cursor-default' : 'cursor-pointer'}`}
+                        className={`absolute top-2 left-2 ${isSaved
+                            ? 'text-white bg-yellow-500'
+                            : 'text-yellow-500 bg-white hover:bg-yellow-500 hover:text-white'
+                          } flex justify-center items-center p-2 rounded-full shadow transition-colors ${isSaved ? 'cursor-default' : 'cursor-pointer'
+                          }`}
                       >
                         <i className={`fa-${isSaved ? 'solid' : 'regular'} fa-bookmark text-sm`}></i>
                       </button>

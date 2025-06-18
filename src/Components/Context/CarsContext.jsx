@@ -1,3 +1,4 @@
+// Context file: CarsContext.js
 import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -51,7 +52,7 @@ export default function CarsContextProvider({ children }) {
             await axios.post(
                 `https://azmycarsapi.runasp.net/api/Favourites/${carId}/${userId}`
             );
-            getCarsSave();
+            setSavedCarIds(prev => new Set(prev).add(carId));
             toast.success('Car saved to favorites!');
         } catch (error) {
             console.error('Error saving car:', error);
@@ -83,7 +84,6 @@ export default function CarsContextProvider({ children }) {
             if (error.response?.status === 401) {
                 localStorage.removeItem('userToken');
             }
-           
         }
     }
 
