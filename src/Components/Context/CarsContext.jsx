@@ -83,7 +83,7 @@ export default function CarsContextProvider({ children }) {
             if (error.response?.status === 401) {
                 localStorage.removeItem('userToken');
             }
-            toast.error('Failed to load saved cars.');
+           
         }
     }
 
