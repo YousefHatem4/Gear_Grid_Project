@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -27,6 +27,7 @@ export default function Listing() {
 
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
+  const carSectionRef = useRef(null); // ref to scroll into view
   let { getCarToSave, savedCarIds } = useContext(carsContext);
 
   async function getAllCars() {
@@ -40,6 +41,14 @@ export default function Listing() {
     setCars(data);
     setLoading(false);
   }
+
+  const handleCategoryClick = async (category) => {
+    setLoading(true);
+    await getAllCarsCategories(category);
+    if (carSectionRef.current) {
+      carSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   useEffect(() => {
     getAllCars();
@@ -70,7 +79,7 @@ export default function Listing() {
               <div
                 key={index}
                 className="group cursor-pointer relative bg-white p-3 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center"
-                onClick={() => getAllCarsCategories(category.name)}
+                onClick={() => handleCategoryClick(category.name)}
               >
                 <div className="flex-shrink-0 h-20 w-20 rounded-full bg-gray-50 p-4 flex items-center justify-center group-hover:bg-gray-100 transition-colors duration-300">
                   <FontAwesomeIcon icon={category.icon} className="h-16 w-16 text-black text-2xl" />
@@ -84,7 +93,7 @@ export default function Listing() {
         </div>
       </div>
 
-      <div className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <div ref={carSectionRef} className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900">Available Cars</h2>
